@@ -1,69 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stored IP Information</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        #ip-info {
-            margin-top: 20px;
-            border: 1px solid #ddd;
-            padding: 20px;
-            display: inline-block;
-            text-align: left;
-            max-width: 600px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display Picked Number</title>
 </head>
 <body>
-    <h1>Stored IP Information</h1>
-    <div id="ip-info">
-        <p>Loading...</p>
-    </div>
+  <h1>Number Received</h1>
+  <p id="numberDisplay">Waiting for a number...</p>
 
-    <script>
-        // Parse URL parameters to get the IP information
-        function getQueryParams() {
-            const params = new URLSearchParams(window.location.search);
-            return {
-                ip: params.get('ip'),
-                city: params.get('city'),
-                region: params.get('region'),
-                country_name: params.get('country_name'),
-                timezone: params.get('timezone'),
-                currency: params.get('currency'),
-                languages: params.get('languages')
-            };
-        }
+  <script>
+    // Parse the URL to get the number from the query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const receivedNumber = urlParams.get('number');
 
-        // Display the IP information
-        function displayIPInfo() {
-            const data = getQueryParams();
-            const ipInfoDiv = document.getElementById('ip-info');
-
-            if (data.ip) {
-                ipInfoDiv.innerHTML = `
-                    <h2>IP Information:</h2>
-                    <p><strong>IP Address:</strong> ${data.ip}</p>
-                    <p><strong>City:</strong> ${data.city}</p>
-                    <p><strong>Region:</strong> ${data.region}</p>
-                    <p><strong>Country:</strong> ${data.country_name}</p>
-                    <p><strong>Timezone:</strong> ${data.timezone}</p>
-                    <p><strong>Currency:</strong> ${data.currency}</p>
-                    <p><strong>Languages:</strong> ${data.languages}</p>
-                `;
-            } else {
-                ipInfoDiv.innerHTML = '<p>No IP information found.</p>';
-            }
-        }
-
-        // Call the function to display the info
-        displayIPInfo();
-    </script>
+    // Display the number if it exists
+    if (receivedNumber) {
+      document.getElementById('numberDisplay').innerText = `Received Number: ${receivedNumber}`;
+    } else {
+      document.getElementById('numberDisplay').innerText = 'No number received yet.';
+    }
+  </script>
 </body>
 </html>
