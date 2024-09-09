@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Storage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>IP Storage</h1>
+    <div id="ip-container"></div>
+
+    <script>
+        // Simulating IP storage
+        document.body.innerHTML += '<p>Ready to receive IP data...</p>';
+
+        // Mock handler to "store" incoming IP data
+        window.addEventListener('message', function(event) {
+            if (event.data && event.data.ip) {
+                const ipContainer = document.getElementById('ip-container');
+                ipContainer.innerHTML += `<p>Stored IP: ${event.data.ip}</p>`;
+            }
+        }, false);
+    </script>
+</body>
+</html>
